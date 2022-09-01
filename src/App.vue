@@ -1,17 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  {{ states.grossingAppList }}
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+// import { Vue } from 'vue'
+import { useStore } from 'vuex'
+import { computed, onMounted, reactive } from 'vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const store = useStore()
+
+const states = reactive({
+  topFreeAppList: computed(() => store.getters['data/topFreeAppList']),
+  grossingAppList: computed(() => store.getters['data/grossingAppList']),
+})
+
+onMounted(() => {
+  store.dispatch('data/getTopFreeAppList')
+  store.dispatch('data/getGrossingAppList')
+})
 </script>
 
 <style>
