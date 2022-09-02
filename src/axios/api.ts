@@ -1,4 +1,4 @@
 export default {
-  topfreeapplications: 'topfreeapplications/limit=100/json',
+  topfreeapplications: 'topfreeapplications/limit=',
   topgrossingapplications: 'topgrossingapplications/limit=10/json',
 }

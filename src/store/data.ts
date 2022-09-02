@@ -16,8 +16,8 @@ export const getters = {
 }
 
 export const actions = {
-  async getTopFreeAppList({ commit, state }) {
-    const res = await $http.get(`/${api.topfreeapplications}`)
+  async getTopFreeAppList({ commit, state }, count) {
+    const res = await $http.get(`/${api.topfreeapplications}${count}/json`)
     if (res === undefined) {
       return
     }
