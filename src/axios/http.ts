@@ -9,10 +9,6 @@ $http.interceptors.request.use(
     config.headers = {
       'Content-Type': 'application/json',
     }
-
-    if (config.method.toString() === 'get') {
-      config.url += `?timestamp=${new Date().getTime()}`
-    }
     return config
   },
   error => {

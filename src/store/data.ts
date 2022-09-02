@@ -1,5 +1,5 @@
-import $http from '@/axios/http.ts'
-import api from '@/axios/api.ts'
+import $http from '@/axios/http'
+import api from '@/axios/api'
 
 export const state = () => ({
   topfreeappList: {},
