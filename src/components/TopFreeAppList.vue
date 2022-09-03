@@ -70,6 +70,7 @@ $base_size_2: 64px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    width: 80px;
     margin: 0 10px;
     font-size: 48px;
     color: #ccc;
@@ -78,7 +79,7 @@ $base_size_2: 64px;
   > .app-icon {
     width: $base_size_1;
     height: $base_size_1;
-    margin: 0 20px;
+    margin-right: 20px;
   }
 
   > .content {
@@ -111,6 +112,7 @@ $base_size_2: 64px;
     margin-bottom: 28px;
 
     > p {
+      width: 30px;
       margin: 0 5px;
       font-size: 24px;
     }
@@ -118,10 +120,12 @@ $base_size_2: 64px;
     > .app-icon {
       width: $base_size_2;
       height: $base_size_2;
-      margin: 0 10px;
+      margin-right: 10px;
     }
 
     > .content {
+      width: 60%;
+
       > .title {
         font-size: 18px;
       }
