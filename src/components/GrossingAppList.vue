@@ -1,5 +1,6 @@
 <template>
   <a-empty v-if="grossingAppList.length === 0" />
+  <h1 class="title">推薦</h1>
   <ul class="ul-list">
     <li v-for="item in grossingAppList" :key="item.title.label">
       <a-card class="card" :bordered="false">
@@ -42,17 +43,26 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+$base_size_1: 128px;
+$base_size_2: 64px;
+$base_size_3: 32px;
+
+.title {
+  text-align: left;
+  margin-top: 0.5em;
+}
 .ul-list {
   list-style: none;
   display: flex;
   overflow-x: scroll;
+  padding: 0;
 }
 .card {
   width: 240px;
 }
 .app-icon {
-  width: 128px;
-  height: 128px;
+  width: $base_size_1;
+  height: $base_size_1;
   border-radius: 10px;
 }
 .card-meta {
@@ -63,8 +73,8 @@ onMounted(() => {
     width: 180px;
   }
   .app-icon {
-    width: 64px;
-    height: 64px;
+    width: $base_size_2;
+    height: $base_size_2;
   }
 }
 @media screen and (max-width: 540px) {
@@ -72,8 +82,8 @@ onMounted(() => {
     width: 120px;
   }
   .app-icon {
-    width: 32px;
-    height: 32px;
+    width: $base_size_3;
+    height: $base_size_3;
   }
 }
 </style>
