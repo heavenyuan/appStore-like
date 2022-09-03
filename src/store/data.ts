@@ -7,17 +7,17 @@ export const state = () => ({
 })
 
 export const getters = {
-  topFreeAppList: ({ topfreeappList }) => {
-    return topfreeappList.entry || []
+  topFreeAppList: ({ topfreeappList }) => limit => {
+    return Array.isArray(topfreeappList.entry) ? topfreeappList.entry.slice(0, limit) : []
   },
   grossingAppList: ({ topgrossingappList }) => {
-    return topgrossingappList.entry || []
+    return Array.isArray(topgrossingappList.entry) ? topgrossingappList.entry : []
   },
 }
 
 export const actions = {
-  async getTopFreeAppList({ commit, state }, count) {
-    const res = await $http.get(`/${api.topfreeapplications}${count}/json`)
+  async getTopFreeAppList({ commit, state }) {
+    const res = await $http.get(`/${api.topfreeapplications}`)
     if (res === undefined) {
       return
     }
