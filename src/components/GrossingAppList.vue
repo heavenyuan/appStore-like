@@ -1,16 +1,15 @@
 <template>
-  <a-list :grid="{ gutter: 16, column: 4 }" :data-source="grossingAppList">
-    <template #renderItem="{ item }">
-      <a-list-item>
-        <a-avatar :src="item['im:image'][0].label" />
-        <a-list-item-meta :description="item.category.attributes.label">
-          <template #title>
-            <p>{{ item['im:name'].label }}</p>
-          </template>
-        </a-list-item-meta>
-      </a-list-item>
-    </template>
-  </a-list>
+  <a-empty v-if="grossingAppList.length === 0" />
+  <ul class="ul-list">
+    <li v-for="item in grossingAppList" :key="item.title.label">
+      <a-card class="card" :bordered="false">
+        <a-avatar shape="square" class="app-icon" :src="item['im:image'][0].label" />
+        <a-card-meta :title="item['im:name'].label" class="card-meta">
+          <template v-slot:description>{{ item.category.attributes.label }}</template>
+        </a-card-meta>
+      </a-card>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -42,8 +41,39 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-.demo-loadmore-list {
-  min-height: 350px;
+<style lang="scss" scoped>
+.ul-list {
+  list-style: none;
+  display: flex;
+  overflow-x: scroll;
+}
+.card {
+  width: 240px;
+}
+.app-icon {
+  width: 128px;
+  height: 128px;
+  border-radius: 10px;
+}
+.card-meta {
+  margin-top: 8px;
+}
+@media screen and (max-width: 768px) {
+  .card {
+    width: 180px;
+  }
+  .app-icon {
+    width: 64px;
+    height: 64px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .card {
+    width: 120px;
+  }
+  .app-icon {
+    width: 32px;
+    height: 32px;
+  }
 }
 </style>
