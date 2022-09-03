@@ -1,4 +1,11 @@
-# runoob-vue3-app
+# appStore-like
+
+## development environment
+
+### node version
+```
+16.13.1
+```
 
 ## Project setup
 ```
