@@ -2,18 +2,22 @@ import $http from '@/axios/http'
 import api from '@/axios/api'
 
 export const state = () => ({
-  topfreeappList: {},
-  topgrossingappList: {},
+  topfreeappList: {
+    entry: [],
+  },
+  topgrossingappList: {
+    entry: [],
+  },
 })
 
 export const getters = {
   topFreeAppList:
     ({ topfreeappList }) =>
     limit => {
-      return Array.isArray(topfreeappList.entry) ? topfreeappList.entry.slice(0, limit) : []
+      return topfreeappList.entry.slice(0, limit)
     },
   grossingAppList: ({ topgrossingappList }) => {
-    return Array.isArray(topgrossingappList.entry) ? topgrossingappList.entry : []
+    return topgrossingappList.entry
   },
 }
 
@@ -23,20 +27,22 @@ export const actions = {
     if (res === undefined) {
       return
     }
-    commit('setData', { topfreeappList: res.data?.feed })
+    const { data: { feed: { entry = [] } = {} } = {} } = res
+    commit('setData', { topfreeappList: { entry } })
   },
   async getGrossingAppList({ commit, state }) {
     const res = await $http.get(`/${api.topgrossingapplications}`)
     if (res === undefined) {
       return
     }
-    commit('setData', { topgrossingappList: res.data?.feed })
+    const { data: { feed: { entry = [] } = {} } = {} } = res
+    commit('setData', { topgrossingappList: { entry } })
   },
 }
 
 export const mutations = {
   setData(state, payload) {
-    Object.entries(payload).forEach(([key, value]) => (state[key] = payload[key]))
+    Object.keys(payload).forEach(key => (state[key] = payload[key]))
   },
 }
 
