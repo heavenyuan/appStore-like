@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const $http = axios.create({
-  baseURL: 'https://itunes.apple.com/tw/rss',
+  baseURL: 'https://itunes.apple.com/tw',
 })
 
 $http.interceptors.request.use(

@@ -13,8 +13,8 @@
           <p class="title">{{ item['im:name'].label }}</p>
           <p class="desc">{{ item.category.attributes.label }}</p>
           <div>
-            <a-rate :value="2" />
-            <span>(123)</span>
+            <a-rate :value="item.averageUserRating || 0" />
+            <span>({{ item.userRatingCount || 0 }})</span>
           </div>
         </div>
       </li>
@@ -49,6 +49,14 @@ const topFreeAppList = computed(() => {
       item.title.label.toLowerCase().includes(searchName)
     )
   })
+  const ids = []
+  filter.forEach(item => {
+    if (!Object.keys(item).includes('appid')) {
+      item.appid = item.id.attributes['im:id']
+      ids.push(item.appid)
+    }
+  })
+  store.dispatch('data/getLookup', ids.join())
   return filter
 })
 
