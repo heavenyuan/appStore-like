@@ -7,9 +7,11 @@ export const state = () => ({
 })
 
 export const getters = {
-  topFreeAppList: ({ topfreeappList }) => limit => {
-    return Array.isArray(topfreeappList.entry) ? topfreeappList.entry.slice(0, limit) : []
-  },
+  topFreeAppList:
+    ({ topfreeappList }) =>
+    limit => {
+      return Array.isArray(topfreeappList.entry) ? topfreeappList.entry.slice(0, limit) : []
+    },
   grossingAppList: ({ topgrossingappList }) => {
     return Array.isArray(topgrossingappList.entry) ? topgrossingappList.entry : []
   },
@@ -34,11 +36,7 @@ export const actions = {
 
 export const mutations = {
   setData(state, payload) {
-    for (const key in payload) {
-      if (Object.prototype.hasOwnProperty.call(payload, key)) {
-        state[key] = payload[key]
-      }
-    }
+    Object.entries(payload).forEach(([key, value]) => (state[key] = payload[key]))
   },
 }
 
